@@ -1,0 +1,77 @@
+[
+  {
+    "id": "d001",
+    "title": "Vector Databases for Semantic Search",
+    "content": "Vector databases store embeddings, numerical representations of text, images, or other data, and allow similarity search using distance metrics like cosine similarity. Popular options include Pinecone, Weaviate, Qdrant, and pgvector. They are the backbone of most production retrieval-augmented generation systems because they let you find semantically related content even when the exact keywords do not match."
+  },
+  {
+    "id": "d002",
+    "title": "Chunking Strategies for Retrieval",
+    "content": "How you split documents before embedding them has a large effect on retrieval quality. Fixed-size chunking is simple but can cut sentences in half. Recursive character splitting respects paragraph and sentence boundaries. Semantic chunking groups sentences by topical similarity. Overlapping chunks by 10 to 20 percent helps preserve context that would otherwise be lost at chunk boundaries."
+  },
+  {
+    "id": "d003",
+    "title": "Corrective RAG (CRAG)",
+    "content": "Corrective Retrieval-Augmented Generation adds a lightweight retrieval evaluator that grades each retrieved document as correct, ambiguous, or incorrect. If the top documents are graded incorrect, the system triggers a corrective action such as rewriting the query or falling back to a web search, instead of blindly passing weak context to the generator. This reduces hallucination caused by irrelevant retrieved context."
+  },
+  {
+    "id": "d004",
+    "title": "Self-RAG and Reflection Tokens",
+    "content": "Self-RAG trains a model to emit special reflection tokens during generation that indicate whether retrieval is needed, whether a retrieved passage is relevant, and whether the generated statement is supported by the passage. This lets a single model decide on the fly when to retrieve, when to skip retrieval, and when to revise its own output, rather than following a fixed retrieve-then-generate pipeline every time."
+  },
+  {
+    "id": "d005",
+    "title": "Groundedness and Hallucination Checking",
+    "content": "A groundedness check compares each claim in a generated answer against the retrieved source documents to verify the claim is actually supported. Techniques range from simple lexical overlap scoring to using a second LLM call as a judge that labels each sentence as supported, contradicted, or unsupported. Ungrounded answers are typically discarded, regenerated with different context, or flagged to the user rather than shown as-is."
+  },
+  {
+    "id": "d006",
+    "title": "Query Rewriting and Expansion",
+    "content": "When initial retrieval returns weak or irrelevant results, a query rewriting step reformulates the user's question into one or more alternative queries better suited to the retrieval index. Techniques include hypothetical document embeddings (HyDE), where the model first drafts a hypothetical answer and embeds that instead of the raw question, and step-back prompting, where the model generates a more general question before retrieving."
+  },
+  {
+    "id": "d007",
+    "title": "Agentic RAG vs Traditional RAG",
+    "content": "Traditional RAG follows a fixed pipeline: retrieve once, then generate. Agentic RAG wraps retrieval in a reasoning loop where an agent decides whether to retrieve at all, how many times to retrieve, whether to rewrite the query, and when the gathered evidence is sufficient to answer. This trades a small amount of latency for substantially higher answer quality on multi-hop or ambiguous questions."
+  },
+  {
+    "id": "d008",
+    "title": "Evaluation Metrics for RAG Systems",
+    "content": "Common RAG evaluation metrics include context precision, the fraction of retrieved chunks that are actually relevant, context recall, whether all necessary information was retrieved, faithfulness, whether the answer is grounded in the retrieved context, and answer relevance, whether the answer actually addresses the question. Frameworks such as RAGAS compute these automatically using an LLM judge."
+  },
+  {
+    "id": "d009",
+    "title": "State Machines for Agent Orchestration",
+    "content": "Modern agent frameworks increasingly model multi-step reasoning as an explicit state graph rather than a single long prompt. Each node performs one job, such as retrieve, grade, rewrite, or generate, and edges define transitions, including conditional edges that route based on the output of a node. This makes agent behavior easier to test, visualize, and debug compared to a single monolithic chain-of-thought prompt."
+  },
+  {
+    "id": "d010",
+    "title": "Introduction to Sourdough Starters",
+    "content": "A sourdough starter is a fermented mixture of flour and water that captures wild yeast and lactic acid bacteria from the environment. Feeding it daily with fresh flour and water keeps the culture active. A mature starter should double in size within four to eight hours of feeding and smell pleasantly sour, similar to yogurt."
+  },
+  {
+    "id": "d011",
+    "title": "Basics of Home Espresso Extraction",
+    "content": "Espresso extraction depends on grind size, dose, and shot time. A typical double shot uses about 18 grams of coffee and extracts to roughly 36 grams of liquid in 25 to 30 seconds. Grinding finer increases resistance and extraction time; grinding coarser does the opposite. Channeling, where water finds a low-resistance path through the puck, causes sour, uneven shots."
+  },
+  {
+    "id": "d012",
+    "title": "Context Window Management for Long Agent Tasks",
+    "content": "As agent tasks grow longer, naively appending every tool result and message to the context window causes cost and latency to balloon and can push earlier, important information out of the model's effective attention. Techniques such as summarizing older turns, retrieving only the most relevant prior context, and offloading full tool outputs to external storage while keeping only references in context all help keep long-running agents efficient."
+  },
+  {
+    "id": "d013",
+    "title": "Hybrid Search: Combining Keyword and Vector Retrieval",
+    "content": "Hybrid search combines sparse keyword-based retrieval, such as BM25, with dense vector similarity search, then merges the two ranked lists using a method like reciprocal rank fusion. Keyword search excels at exact terms, product codes, and rare proper nouns; vector search excels at paraphrases and conceptual similarity. Combining both consistently outperforms either method alone on real-world query sets."
+  },
+  {
+    "id": "d014",
+    "title": "Basic Bicycle Maintenance Checklist",
+    "content": "Regular bicycle maintenance includes checking tire pressure before every ride, lubricating the chain every few hundred kilometers, inspecting brake pads for wear, and checking that quick-release skewers are fully closed. A well-maintained drivetrain should shift cleanly across all gears without hesitation or chain skip."
+  },
+  {
+    "id": "d015",
+    "title": "Multi-Hop Question Answering",
+    "content": "Multi-hop questions require combining evidence from more than one source to answer, for example asking about a relationship between two entities that are never described together in a single document. Agentic retrieval systems handle these by issuing multiple, progressively refined retrieval queries and accumulating evidence across iterations, rather than expecting a single retrieval pass to surface a complete answer."
+  }
+]
